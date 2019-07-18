@@ -20,3 +20,5 @@ db.child("stores").child("montys").set(montys, user['idToken'])
 
 openStores = db.child("stores").get(user['idToken']).val();
 print(openStores);
+
+#test comment!
