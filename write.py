@@ -22,3 +22,12 @@ openStores = db.child("stores").get(user['idToken']).val();
 print(openStores);
 
 #test comment!!!!!!!
+
+'''
+save
+diff
+add .
+commit -m "msg"
+git push
+
+'''
