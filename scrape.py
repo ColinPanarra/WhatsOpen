@@ -1,27 +1,38 @@
 
 import requests
 from bs4 import BeautifulSoup
+import time
+#from selenium import webdriver
 
+while True:
+    url = 'https://brandeis.sodexomyway.com/dining-near-me/open-now'
+    r=requests.get(url)
 
-url = 'https://brandeis.sodexomyway.com/dining-near-me/open-now'
-r=requests.get(url)
-
-soup = BeautifulSoup(r.content, 'html.parser')
-
-
-
-
-#gets all divs in the div class dining halls list...
-dining_halls = soup.select('.dining-halls-container')
-stores = soup.find('h2', {'class' : 'dining-halls-container'})
+    soup = BeautifulSoup(r.content, 'html.parser')
 
 
 
 
-print(dining_halls)
+    #gets all divs in the div class dining halls list...
+    dining_halls = soup.select('div.dining-halls-container')
+
+    #stores = soup.find_all()"div[class='ad_item']")
+
+    #dining_halls = soup.find_all(lambda tag: tag.name == 'div' and
+    #                                   tag.get('class') == ['dining-halls-container'])
 
 
-#https://www.learndatasci.com/tutorials/ultimate-guide-web-scraping-w-python-requests-and-beautifulsoup/
+    stores = soup.select("div[class='dining-halls-container']")
+
+
+
+
+
+    print(stores)
+
+    #checks it once an hr
+    time.sleep(60*60)
+    #https://www.learndatasci.com/tutorials/ultimate-guide-web-scraping-w-python-requests-and-beautifulsoup/
 
 
 
