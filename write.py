@@ -1,4 +1,4 @@
-import pyrebase
+git import pyrebase
 config = {
   "apiKey": "AIzaSyDy5fNFeHg7U_mHnds3YmXT_jjIdAFLs98",
   "authDomain": "whatsopen-6eacf.firebaseapp.com",
@@ -21,8 +21,8 @@ db.child("stores").child("montys").set(montys, user['idToken'])
 openStores = db.child("stores").get(user['idToken']).val();
 print(openStores);
 
-#test comment!!!!!!!
 
+#test diff
 '''
 save
 diff
