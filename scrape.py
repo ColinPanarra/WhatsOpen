@@ -17,10 +17,17 @@ soup = BeautifulSoup(html, 'lxml')
 
 #need to create a lambda function so that it finds specific dining-hall-container WITHOUT 'hide'
 result = soup.find_all(lambda tag: tag.name == 'div' and tag.get('class') == ['dining-halls-container'])
-
+stores=[]
 for h2 in result:
     h2tag = h2.find_all('div', class_='dining-halls-block')
-    print(h2[0].text)
+
+    texts = h2.find_all(text=True)
+    for str in texts:
+        if(len(str)>1):
+            stores.append(str)
+            break
+
+print(stores)
 
 
 #
