@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660359652491",
+    "firebase_url": "https://whatsopen-6eacf.firebaseio.com",
+    "project_id": "whatsopen-6eacf",
+    "storage_bucket": "whatsopen-6eacf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660359652491:android:0eb3cc62ff774ad1ff608e",
+        "android_client_info": {
+          "package_name": "com.example.whatsopen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660359652491-as3dd9l7gmj60f20bj26vgsrl5kpv93d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdxhG4gj5vyqKChL1IJopO3LPUQjI9Uoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660359652491-as3dd9l7gmj60f20bj26vgsrl5kpv93d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
