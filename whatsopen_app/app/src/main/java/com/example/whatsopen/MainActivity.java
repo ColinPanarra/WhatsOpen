@@ -19,9 +19,12 @@ package com.example.whatsopen;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,65 +35,38 @@ import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Map;
-
-
 public class MainActivity extends AppCompatActivity {
 
+    // ...
 
-    private ArrayList<String> list = new ArrayList<>();
-    private static final String TAG = "MainActivity";
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        basicReadWrite();
-    }
 
-    public void basicReadWrite() {
-        // [START write_message]
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        // Find the ListView
+        mListView = (ListView) findViewById(R.id.list);
 
-        myRef.setValue("test");
-        // [END write_message]
+        /*
+         * Create a DatabaseReference to the data; works with standard DatabaseReference methods
+         * like limitToLast() and etc.
+         */
+        DatabaseReference storesReference = FirebaseDatabase.getInstance().getReference()
+                .child("stores");
 
-        // [START read_message]
-        // Read from the database
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, list);
+        // Now set the adapter with a given layout
+        mListView.setAdapter(new FirebaseListAdapter<Store>(this, Store.class,
+                android.R.layout.simple_list_item_1, storesReference) {
 
-
-        ListView listView = findViewById(R.id.list);
-        listView.setAdapter(adapter);
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
+            // Populate view as needed
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-                list.add(value);
-            }
+            protected void populateView(View view, Store store, int position) {
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-                list.clear();
+                ((TextView) view.findViewById(android.R.id.list)).setText(store.getName());
+
+
             }
         });
-
-
-
     }
-
-
-
-
-        // [END read_message]
-
 }
