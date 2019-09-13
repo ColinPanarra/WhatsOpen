@@ -17,56 +17,74 @@ package com.example.whatsopen;
 
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
+
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.lang.reflect.Array;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("stores");
+    private ListView listView;
+    private ArrayList<String> mStore = new ArrayList<>();
 
-    // ...
-
-    private ListView mListView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
-
-        // Find the ListView
-        mListView = (ListView) findViewById(R.id.list);
-
-        /*
-         * Create a DatabaseReference to the data; works with standard DatabaseReference methods
-         * like limitToLast() and etc.
-         */
-        DatabaseReference storesReference = FirebaseDatabase.getInstance().getReference()
-                .child("stores");
-
-        // Now set the adapter with a given layout
-        mListView.setAdapter(new FirebaseListAdapter<Store>(this, Store.class,
-                android.R.layout.simple_list_item_1, storesReference) {
-
-            // Populate view as needed
+        setContentView(R.layout.activity_main);
+        listView = findViewById(R.id.list);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStore);
+        listView.setAdapter(arrayAdapter);
+        myRef.addChildEventListener(new ChildEventListener() {
             @Override
-            protected void populateView(View view, Store store, int position) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String value = dataSnapshot.getValue(String.class);
+                mStore.add(value);
+                arrayAdapter.notifyDataSetChanged();
 
-                ((TextView) view.findViewById(android.R.id.list)).setText(store.getName());
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                 
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                mStore.remove(value);
+                arrayAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+
+
     }
+
+
+
+
 }
