@@ -37,7 +37,7 @@ for h2 in result:
 #################################
 #information to give to the firebase
 config = {
-  "apiKey": "AIzaSyDy5fNFeHg7U_mHnds3YmXT_jjIdAFLs98",
+  "apiKey": "api key",
   "authDomain": "whatsopen-6eacf.firebaseapp.com",
   "databaseURL": "https://whatsopen-6eacf.firebaseio.com",
   "storageBucket": "gs://whatsopen-6eacf.appspot.com",
@@ -47,7 +47,7 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
-user = auth.sign_in_with_email_and_password("ColinPanarra@gmail.com", "neatoburrito")
+user = auth.sign_in_with_email_and_password("@genericemail", "password")
 #APIkey AIzaSyDy5fNFeHg7U_mHnds3YmXT_jjIdAFLs98
 #link https://whatsopen-6eacf.firebaseio.com/
 
