@@ -42,14 +42,13 @@ config = {
   "databaseURL": "https://whatsopen-6eacf.firebaseio.com",
   "storageBucket": "gs://whatsopen-6eacf.appspot.com",
   "projectId": "whatsopen-6eacf",
-  #"servceAccount": "C://Users/colin/OneDrive/Desktop/peronal/WhatsOpen/whatsopen-93023321f37f.json"
 }
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 user = auth.sign_in_with_email_and_password("@genericemail", "password")
-#APIkey AIzaSyDy5fNFeHg7U_mHnds3YmXT_jjIdAFLs98
-#link https://whatsopen-6eacf.firebaseio.com/
+
+
 
 db = firebase.database();
 #sets stores from the scraping in the db and uploads them
