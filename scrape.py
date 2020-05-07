@@ -3,12 +3,14 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import pyrebase
 
+#this code has been added in#
 
 #########################
 #  Scrapes open stores #
 #########################
 
-#grabs the url and turns it into lmxl for bs4 to read
+
+#a line has been deleted here
 url = 'https://brandeis.sodexomyway.com/dining-near-me/open-now'
 browser= webdriver.Chrome(executable_path='C:/Users/colin/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/selenium/webdriver/chrome/chromedriver.exe')
 browser.get(url)
