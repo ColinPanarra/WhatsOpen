@@ -54,13 +54,3 @@ db = firebase.database();
 #sets stores from the scraping in the db and uploads them
 db.child("stores").set(stores, user['idToken'])
 openStores = db.child("stores").get(user['idToken']).val();
-
-
-#steps for GitBash
-'''
-save
-diff
-add .
-commit -m "msg"
-git push
-'''
